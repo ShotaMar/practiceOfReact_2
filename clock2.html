@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+    <title>update dom</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        //1秒ごとに時間を表示
+        setInterval(showClock,1000)
+        //毎秒実行される関数
+        function showClock(){
+            const d = new Date()
+            const [h,m,s] = [ //分割代入
+                d.getHours(),
+                d.getMinutes(),
+                d.getSeconds()
+            ]
+            const z2 = (v)=>{
+                const s = '00' + v
+                return s.substr(s.length - 2, 2)
+            }
+
+            const elem = 
+                <div>
+                    {z2(h)}:{z2(m)}:{z2(s)}
+                </div>
+                
+            const root = document.getElementById('root')
+            ReactDOM.render(elem, root)
+        }
+    </script>
+</body>
+</html>
