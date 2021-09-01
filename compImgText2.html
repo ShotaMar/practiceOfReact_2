@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+    <title>compornent</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        //リストコンポーネントを定義
+        class RList extends React.Component {
+            render() {
+                //item属性に指定した値から配列itemを利用
+                const items = this.props.items.split(',')
+                //アイテム一覧からli要素を作成
+                const itemObj = items.map(
+                    (e) =>{
+                        return <li>{e}</li>
+                    }
+                )
+                //タイトル
+                let title = this.props.title
+                if(!title)title = "LIST"
+                //描画内容を返す
+                return (
+                    <div>
+                        <h3>{title}</h3>
+                        <ul>{itemObj}</ul>
+                    </div>
+            )}
+        }
+        //コンポーネントを表示する
+        ReactDOM.render(
+            <div>    
+                <RList
+                    title = 'Colors'
+                    items = 'Red,Green,Blue,White' />,
+                <RList
+                    title = '野菜'
+                    items = '大根,にんじん,きゅうり,トマト' />,
+            </div>,
+            document.getElementById('root'))
+    </script>
+</body>
+</html>
